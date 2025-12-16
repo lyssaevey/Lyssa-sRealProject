@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Number Guessing Game</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f2f4f8;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .game-box {
+            max-width: 400px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        input {
+            padding: 8px;
+            width: 60%;
+            margin-top: 10px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #343a40;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #212529;
+        }
+
+        .message {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .nav {
+            margin-bottom: 30px;
+        }
+
+        .nav a {
+            margin: 0 8px;
+            color: #343a40;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="nav">
+    <a href="scratch.html">Scratch Page</a> |
+    <a href="../index.html">Home</a>
+</div>
+
+<div class="game-box">
+    <h1>Number Guessing Game</h1>
+    <p>Guess a number between 1 and 50</p>
+
+    <input type="number" id="guess" placeholder="Enter your guess">
+    <br>
+    <button onclick="checkGuess()">Submit Guess</button>
+
+    <div class="message" id="message"></div>
+    <div class="message" id="attempts"></div>
+</div>
+
+<script>
+    let secretNumber = Math.floor(Math.random() * 50) + 1;
+    let attempts = 0;
+
+    function checkGuess() {
+        let userGuess = document.getElementById("guess").value;
+        let message = document.getElementById("message");
+        let attemptText = document.getElementById("attempts");
+
+        if (userGuess === "") {
+            message.textContent = "Please enter a number.";
+            return;
+        }
+
+        attempts++;
+
+        if (userGuess == secretNumber) {
+            message.textContent = "Correct! You guessed the number.";
+            attemptText.textContent = "Attempts: " + attempts;
+        } else if (userGuess < secretNumber) {
+            message.textContent = "Too low. Try again.";
+            attemptText.textContent = "Attempts: " + attempts;
+        } else {
+            message.textContent = "Too high. Try again.";
+            attemptText.textContent = "Attempts: " + attempts;
+        }
+    }
+</script>
+
+</body>
+</html>
